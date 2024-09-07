@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="mapaSaludable.css" />
+    <title>Generación de Círculos</title>
+  </head>
+  <body>
+    <div class="image-container-top" id="imageContainerTop">
+      <div class="image-item">
+        <img src="img/foto13.png" alt="Foto 13" width="15" height="15" />
+        <div class="value-display" id="personCountDisplay">0</div>
+      </div>
+      <div class="image-item">
+        <img src="img/foto14.png" alt="Foto 14" width="15" height="15" />
+        <div class="value-display" id="believerCountDisplay">0</div>
+      </div>
+      <div class="image-item">
+        <img src="img/foto15.png" alt="Foto 15" width="15" height="15" />
+        <div class="value-display" id="baptizedCountDisplay">0</div>
+      </div>
+      <div class="image-item">
+        <img src="img/foto16.png" alt="Foto 15" width="15" height="15" />
+        <div class="value-display" id="newlyBaptizedCountDisplay">0</div>
+      </div>
+    </div>
+    <div class="circle" id="mainCircle">
+      <div class="image-container">
+        <div class="image-grid">
+          <img
+            src="img/foto1.png"
+            alt="Foto 3"
+            width="20"
+            height="20"
+            class="inactive"
+          />
+          <img
+            src="img/foto2.png"
+            alt="Foto 4"
+            width="20"
+            height="20"
+            class="inactive"
+          />
+          <img
+            src="img/foto3.png"
+            alt="Foto 5"
+            width="20"
+            height="20"
+            class="inactive"
+          />
+          <img
+            src="img/foto4.png"
+            alt="Foto 6"
+            width="20"
+            height="20"
+            class="inactive"
+          />
+          <img
+            src="img/foto5.png"
+            alt="Foto 7"
+            width="20"
+            height="20"
+            class="inactive"
+          />
+          <img
+            src="img/foto6.png"
+            alt="Foto 8"
+            width="20"
+            height="20"
+            class="inactive"
+          />
+          <img
+            src="img/foto7.png"
+            alt="Foto 9"
+            width="20"
+            height="20"
+            class="inactive"
+          />
+          <img
+            src="img/foto8.png"
+            alt="Foto 10"
+            width="20"
+            height="20"
+            class="inactive"
+          />
+          <img
+            src="img/foto9.png"
+            alt="Foto 11"
+            width="20"
+            height="20"
+            class="inactive"
+          />
+          <img
+            src="img/foto10.png"
+            alt="Foto 12"
+            width="20"
+            height="20"
+            class="inactive"
+          />
+          <img
+            src="img/foto11.png"
+            alt="Foto 13"
+            width="20"
+            height="20"
+            class="inactive"
+          />
+          <img
+            src="img/foto12.png"
+            alt="Foto 14"
+            width="20"
+            height="20"
+            class="inactive"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="circle-buttons">
+      <button class="view-button" id="viewDataButton">📄</button>
+    </div>
+
+    <div class="form-container" id="formContainer">
+      <button id="closeButton">✖</button>
+      <form id="circleForm">
+        <label for="circleCount">Hijos:</label>
+        <input type="number" id="circleCount" min="0" placeholder="0" />
+
+        <label for="personCount">Cantidad de Personas:</label>
+        <input type="number" id="personCount" min="0" placeholder="0" />
+
+        <label for="believerCount">Cantidad de Creyentes:</label>
+        <input type="number" id="believerCount" min="0" placeholder="0" />
+
+        <label for="baptizedCount">Cantidad de Bautizados:</label>
+        <input type="number" id="baptizedCount" min="0" placeholder="0" />
+
+        <label for="newlyBaptizedCount">Cantidad de Nuevos Bautizados:</label>
+        <input type="number" id="newlyBaptizedCount" min="0" placeholder="0" />
+
+        <label for="evangelicalActionsCount"
+          >Acciones del Evangelio por Día:</label
+        >
+        <input
+          type="number"
+          id="evangelicalActionsCount"
+          min="0"
+          placeholder="0"
+        />
+
+        <label for="churchName">Nombre de la Iglesia:</label>
+        <input type="text" id="churchName" placeholder="Nombre de la Iglesia" />
+
+        <label for="leaderName">Nombre del Líder:</label>
+        <input type="text" id="leaderName" placeholder="Nombre del Líder" />
+
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" id="email" placeholder="correo@ejemplo.com" />
+
+        <label for="startDate">Fecha de Inicio:</label>
+        <input type="date" id="startDate" />
+
+        <label for="country">País:</label>
+        <input type="text" id="country" placeholder="País" />
+
+        <label for="place">Lugar (Ciudad o Provincia):</label>
+        <input type="text" id="place" placeholder="Lugar" />
+        <label for="tipoDeIglecia">Tipo de Iglesia Común:</label>
+        <select class="tipoDeIglecia" id="tipoDeIglecia">
+          <option value="nuevos_creyentes" selected>Nuevos Creyentes</option>
+          <option value="creyentes_antiguos">Creyentes Antiguos</option>
+          <option value="tradicional">Tradicional</option>
+        </select>
+        <label for="TresTerciosComunes">Tres Tercios Comunes:</label>
+        <input type="number" id="TresTerciosComunes" min="0" placeholder="0" />
+        <label for="nota">Nota Común:</label>
+        <input type="text" id="nota" min="0" placeholder="Escribe una nota" />
+
+        <div class="toggle-container">
+          <p>Activar opciones:</p>
+          <div class="toggle">
+            <span>Nueva Generación Común</span>
+            <input type="checkbox" id="toggle1" />
+            <label for="toggle1" class="toggle-label"></label>
+          </div>
+          <div class="toggle">
+            <span>Activo</span>
+            <input type="checkbox" id="toggle2" />
+            <label for="toggle2" class="toggle-label"></label>
+          </div>
+          <div class="toggle">
+            <img src="img/foto1.png" alt="Foto 3" width="40" height="40" />
+            <span>Evangelio</span>
+            <input type="checkbox" id="toggle3" />
+            <label for="toggle3" class="toggle-label"></label>
+          </div>
+          <div class="toggle">
+            <img src="img/foto2.png" alt="Foto 4" width="40" height="40" />
+            <span>Arrepentirse</span>
+            <input type="checkbox" id="toggle4" />
+            <label for="toggle4" class="toggle-label"></label>
+          </div>
+          <div class="toggle">
+            <img src="img/foto3.png" alt="Foto 5" width="40" height="40" />
+            <span>Bautismo</span>
+            <input type="checkbox" id="toggle5" />
+            <label for="toggle5" class="toggle-label"></label>
+          </div>
+          <div class="toggle">
+            <img src="img/foto4.png" alt="Foto 6" width="40" height="40" />
+            <span>Espíritu Santo</span>
+            <input type="checkbox" id="toggle6" />
+            <label for="toggle6" class="toggle-label"></label>
+          </div>
+          <div class="toggle">
+            <img src="img/foto5.png" alt="Foto 7" width="40" height="40" />
+            <span>Biblia</span>
+            <input type="checkbox" id="toggle7" />
+            <label for="toggle7" class="toggle-label"></label>
+          </div>
+          <div class="toggle">
+            <img src="img/foto6.png" alt="Foto 8" width="40" height="40" />
+            <span>Amor</span>
+            <input type="checkbox" id="toggle8" />
+            <label for="toggle8" class="toggle-label"></label>
+          </div>
+          <div class="toggle">
+            <img src="img/foto7.png" alt="Foto 9" width="40" height="40" />
+            <span>Santa Cena</span>
+            <input type="checkbox" id="toggle9" />
+            <label for="toggle9" class="toggle-label"></label>
+          </div>
+          <div class="toggle">
+            <img src="img/foto8.png" alt="Foto 10" width="40" height="40" />
+            <span>Oración</span>
+            <input type="checkbox" id="toggle10" />
+            <label for="toggle10" class="toggle-label"></label>
+          </div>
+          <div class="toggle">
+            <img src="img/foto9.png" alt="Foto 11" width="40" height="40" />
+            <span>Señales y Maravillas</span>
+            <input type="checkbox" id="toggle11" />
+            <label for="toggle11" class="toggle-label"></label>
+          </div>
+          <div class="toggle">
+            <img src="img/foto10.png" alt="Foto 12" width="40" height="40" />
+            <span>Dar/Generosidad</span>
+            <input type="checkbox" id="toggle12" />
+            <label for="toggle12" class="toggle-label"></label>
+          </div>
+          <div class="toggle">
+            <img src="img/foto11.png" alt="Foto 13" width="40" height="40" />
+            <span>Adoración</span>
+            <input type="checkbox" id="toggle13" />
+            <label for="toggle13" class="toggle-label"></label>
+          </div>
+          <div class="toggle">
+            <img src="img/foto12.png" alt="Foto 14" width="40" height="40" />
+            <span>Hacer discípulos</span>
+            <input type="checkbox" id="toggle14" />
+            <label for="toggle14" class="toggle-label"></label>
+          </div>
+          <div class="toggle">
+            <img src="img/foto12.png" alt="Foto 15" width="40" height="40" />
+            <span>Iglesia Común</span>
+            <input type="checkbox" id="toggle15" />
+            <label for="toggle15" class="toggle-label"></label>
+          </div>
+        </div>
+
+        <div class="button-container">
+          <button type="submit">Aceptar</button>
+          <button type="button" id="clearButton">Borrar</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="data-modal" id="dataModal">
+      <div class="data-modal-content">
+        <span class="data-close" id="dataCloseButton">✖</span>
+        <h2>Datos Totales</h2>
+        <div id="dataDisplay"></div>
+      </div>
+    </div>
+
+    <canvas id="canvas"></canvas>
+    <script src="mapaSaludable.js"></script>
+  </body>
+</html>

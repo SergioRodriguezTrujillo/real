@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden; /* Oculta las barras de desplazamiento */
+    background-color: #f2f2f2; /* Color de fondo de la página */
+    position: relative; /* Habilita el posicionamiento absoluto para los círculos */
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Coloca la canvas detrás de los círculos */
+}
+
+.circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    border: 2px solid #3498db;
+    background-color: rgba(52, 152, 219, 0.5);
+    cursor: grab;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center; 
+    color: black;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.circle:active {
+    cursor: grabbing;
+}
+
+.form-container {
+    display: none; /* Inicialmente oculto */
+    position: absolute;
+    background: rgba(201, 205, 245, 0.8); /* Color morado con transparencia */
+    border: 1px solid #3498db; /* Color del borde */
+    padding: 8px; /* Se mantiene el padding para un mejor espacio interno */
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* Asegura que se muestre por encima de otros elementos */
+    font-weight: bold;
+    font-size: 11px;
+    height: 140px; /* Altura del formulario */
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column; /* Para que los campos estén en una columna */
+    height: 100%; /* Asegúrate que el formulario ocupe toda la altura del contenedor */
+    justify-content: space-between; /* Espacio entre los elementos de formulario */
+}
+
+.form-container label {
+    margin-bottom: 5px; /* Mayor espacio entre etiquetas y campos */
+    font-size: 11px; /* Reduce el tamaño de la fuente de las etiquetas */
+}
+
+/* Estilo base para los inputs */
+.form-container input {
+    margin-bottom: 8px; /* Aumenta el espacio entre los campos de entrada */
+    padding: 6px; /* Mantener el padding */
+    border: none; /* Elimina el borde visible */
+    border-bottom: 2px solid #3498db; /* Solo borde inferior */
+    border-radius: 4px;
+    transition: all 0.3s ease; /* Suaviza las transiciones */
+    font-size: 11px; /* Reduce el tamaño de la fuente de los inputs */
+}
+
+/* Animación en el borde inferior al enfocar */
+.form-container input:focus {
+    outline: none; /* Elimina el borde negro predeterminado */
+    transform: scale(1.05); /* Crece un poco al enfocar */
+}
+
+.form-container input:focus::placeholder {
+    color: transparent; /* Camufla el placeholder durante el enfoque */
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between; /* Espacio equidistante entre botones */
+}
+
+.buttons-container button {
+    flex: 1; /* Los botones ocuparán el mismo ancho */
+    margin: 3px; /* Un poco de margen entre los botones */
+}
+
+.form-container button {
+    padding: 6px; /* Se mantiene el padding para los botones */
+    border: none;
+    border-radius: 4px;
+    color: white;
+    background-color: rgba(52, 152, 219); /* Color de fondo para los botones */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    font-weight: bold;
+    font-size: 11px; /* Reduce el tamaño de la fuente del botón */
+    transition: background-color 0.3s;
+}
+
+.form-container button[type="submit"] {
+    background-color: #3498db; /* Botón Aceptar en azul */
+}
+
+.form-container button[type="button"] {
+    background-color: #e76d3c; /* Botón Eliminar en rojo */
+}
+
+.form-container button[type="button"]:hover {
+    background-color: #eb2c25; /* Color al pasar el mouse (hover) */
+}
+
+.form-container button:hover {
+    background-color: rgb(52, 69, 219); /* Color al pasar el mouse (hover) */
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="mapaRelaciones.css">
+    <title>Circles with Lines</title>
+</head>
+<body>
+    <div class="circle" id="mainCircle">Círculo Principal</div>
+    <div class="form-container" id="formContainer">
+        <form id="circleForm">
+            <label for="circleName">Nombre:</label>
+            <input type="text" id="circleName" required placeholder="Ingrese nombre">
+            <label for="circleCount">Cantidad:</label>
+            <input type="number" id="circleCount" min="0" required placeholder="0"> <!-- Permitir cero en la cantidad -->
+            
+            <div class="buttons-container">
+                <button type="submit">Aceptar</button>
+                <button type="button" id="deleteCircle">Eliminar</button>
+            </div>
+        </form>
+    </div>
+    <canvas id="canvas"></canvas>
+    <script src="mapaRelaciones.js"></script>
+</body>
+</html>

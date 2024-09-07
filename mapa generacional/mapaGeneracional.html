@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="mapaGeneracional.css">
+    <title>Generación de Círculos</title>
+</head>
+<body>
+    <div class="circle" id="mainCircle"></div>
+    <div class="form-container" id="formContainer">
+        <button id="closeButton">✖</button>
+        <form id="circleForm">
+            <label for="smallCircleCount">Discipulos:</label>
+            <input type="number" id="smallCircleCount" min="0" required placeholder="0">
+            <label for="circleCount">Lider:</label>
+            <input type="number" id="circleCount" min="0" required placeholder="0">
+            <div class="button-container">
+                <button type="submit">Aceptar</button>
+                <button type="button" id="clearButton">Borrar</button>
+            </div>
+        </form>
+    </div>
+    <canvas id="canvas"></canvas>
+    <script src="mapaGeneracional.js"></script>
+</body>
+</html>
