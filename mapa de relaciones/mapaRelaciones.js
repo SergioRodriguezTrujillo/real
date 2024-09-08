@@ -1,8 +1,8 @@
-
 const mainCircle = document.getElementById("mainCircle");
 const formContainer = document.getElementById("formContainer");
 const circleForm = document.getElementById("circleForm");
 const deleteCircleButton = document.getElementById("deleteCircle");
+const closeFormButton = document.getElementById("closeForm"); // Agregar botón de cerrar
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
@@ -54,7 +54,7 @@ function onMouseDown(circle, e) {
     document.addEventListener("mouseup", onMouseUp);
 }
 
-function onRightClick(e) {
+function onClick(e) { // Cambié el método a onClick
     e.preventDefault(); // Evita el menú contextual
     const rect = currentCircle.getBoundingClientRect();
     formContainer.style.display = 'block';
@@ -62,9 +62,32 @@ function onRightClick(e) {
     formContainer.style.left = (rect.right + 10) + 'px'; // Coloca el formulario al lado del círculo
 }
 
+function onRightMouseDown(circle, e) {
+    e.preventDefault(); // Evita el menú contextual al hacer clic derecho
+    currentCircle = circle; // Establece el círculo actual
+    currentCircle.style.transition = 'none'; // Desactiva la transición durante el arrastre
+    offsetX = e.clientX - currentCircle.getBoundingClientRect().left;
+    offsetY = e.clientY - currentCircle.getBoundingClientRect().top;
+
+    function onMouseMove(e) {
+        currentCircle.style.left = (e.clientX - offsetX) + 'px';
+        currentCircle.style.top = (e.clientY - offsetY) + 'px';
+        drawLines(); // Actualiza las líneas cuando se mueve el círculo
+    }
+
+    function onMouseUp() {
+        currentCircle.style.transition = ''; // Reactiva la transición
+        document.removeEventListener("mousemove", onMouseMove);
+        document.removeEventListener("mouseup", onMouseUp);
+    }
+
+    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("mouseup", onMouseUp);
+}
+
 function addCircleEvents(circle) {
     circle.addEventListener("mousedown", (e) => onMouseDown(circle, e));
-    circle.addEventListener("contextmenu", onRightClick);
+    circle.addEventListener("click", onClick); // Cambiado de context menu a click
 }
 
 function drawLines() {
@@ -135,6 +158,11 @@ circleForm.addEventListener("submit", function(e) {
 
     drawLines(); // Dibuja las líneas después de agregar círculos
     formContainer.style.display = 'none'; // Oculta el formulario después de aceptar
+});
+
+// Función para cerrar el formulario
+closeFormButton.addEventListener("click", function() {
+    formContainer.style.display = 'none'; // Oculta el formulario al hacer clic en el botón 'X'
 });
 
 function adjustBodyHeight() {

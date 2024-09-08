@@ -48,6 +48,25 @@ canvas {
     height: 140px; /* Altura del formulario */
 }
 
+.form-container .close-button {
+    background: transparent;
+    border: none;
+    color: #3498db; /* Color del botón */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    transition: transform 0.2s; /* Suaviza la transición al aplicar el hover */
+}
+
+.form-container .close-button:hover {
+    transform: scale(1.1); /* Aumenta el tamaño del botón al pasar el mouse */
+    outline: none; /* Sin borde al hacer hover */
+    background-color: none;
+}
+
 .form-container form {
     display: flex;
     flex-direction: column; /* Para que los campos estén en una columna */
@@ -115,6 +134,6 @@ canvas {
     background-color: #eb2c25; /* Color al pasar el mouse (hover) */
 }
 
-.form-container button:hover {
+.form-container .button:hover {
     background-color: rgb(52, 69, 219); /* Color al pasar el mouse (hover) */
 }

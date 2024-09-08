@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="mapaRelaciones.css">
-    <title>Circles with Lines</title>
+    <title>Mapa De Relaciones</title>
 </head>
 <body>
-    <div class="circle" id="mainCircle">Círculo Principal</div>
+    <div class="circle" id="mainCircle">YO</div>
     <div class="form-container" id="formContainer">
+        <button id="closeForm" class="close-button">X</button> <!-- Botón para cerrar -->
         <form id="circleForm">
             <label for="circleName">Nombre:</label>
             <input type="text" id="circleName" required placeholder="Ingrese nombre">
             <label for="circleCount">Cantidad:</label>
-            <input type="number" id="circleCount" min="0" required placeholder="0"> <!-- Permitir cero en la cantidad -->
-            
+            <input type="number" id="circleCount" min="0" required placeholder="0"> <!-- Permitir cero en la cantidad -->            
             <div class="buttons-container">
-                <button type="submit">Aceptar</button>
+                <button class="button" type="submit">Aceptar</button>
                 <button type="button" id="deleteCircle">Eliminar</button>
             </div>
         </form>
