@@ -45,9 +45,11 @@ function onRightClick(circle, e) {
     function onMouseMove(e) {
         currentCircle.style.left = (e.clientX - offsetX) + 'px'; 
         currentCircle.style.top = (e.clientY - offsetY) + 'px'; 
+
         const currentTopContainer = circles.find(circleData => circleData.element === currentCircle).topContainer; 
-        currentTopContainer.style.left = (e.clientX - offsetX + (currentCircle.offsetWidth / 2) - (currentTopContainer.offsetWidth / 2)) + 'px';
-        currentTopContainer.style.top = (parseFloat(currentCircle.style.top) + currentCircle.offsetHeight + 5) + 'px'; 
+        currentTopContainer.style.left = (e.clientX - offsetX - (currentTopContainer.offsetWidth / 2) + (currentCircle.offsetWidth / 2)) + 'px';
+        currentTopContainer.style.top = (parseFloat(currentCircle.style.top) - currentTopContainer.offsetHeight - 5) + 'px'; 
+
         drawLines(); 
         adjustBodyHeight(); 
     }
@@ -230,7 +232,6 @@ document.getElementById('clearButton').addEventListener("click", function() {
     }
 });
 
-// Cambié el evento de cerrar para que reabra el formulario si se cierra
 document.getElementById('closeButton').addEventListener('click', function() {
     formContainer.style.display = 'none'; 
 });
@@ -343,9 +344,23 @@ function adjustBodyHeight() {
         const circleRect = circleData.element.getBoundingClientRect(); 
         maxHeight = Math.max(maxHeight, circleRect.bottom); 
     });
+    // Ajustar el cuerpo de acuerdo con la altura máxima
     document.body.style.height = (maxHeight + 500) + 'px'; 
     const documentWidth = Math.max(...circles.map(circleData => circleData.element.getBoundingClientRect().right)); 
     document.body.style.width = documentWidth + 'px'; 
 }
 
 drawLines();
+
+window.addEventListener('resize', () => {
+    // Reorganizar la posición de los círculos al redimensionar
+    circles.forEach(circleData => {
+        const circleRect = circleData.element.getBoundingClientRect();
+        circleData.element.style.left = circleRect.left + window.scrollX + 'px'; // Ajustar posición horizontal
+        circleData.element.style.top = circleRect.top + window.scrollY + 'px'; // Ajustar posición vertical
+        const currentTopContainer = circleData.topContainer; 
+        currentTopContainer.style.left = (circleRect.left + (circleData.element.offsetWidth / 2) - (currentTopContainer.offsetWidth / 2)) + 'px';
+        currentTopContainer.style.top = (circleRect.top - currentTopContainer.offsetHeight - 5) + 'px'; 
+    });
+});
+
