@@ -3,6 +3,10 @@ const formContainer = document.getElementById("formContainer");
 const circleForm = document.getElementById("circleForm");
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+const colorCountDisplay = document.getElementById('colorCount');
+const colorTableContainer = document.getElementById('colorTableContainer');
+const colorTableBody = document.getElementById('colorTableBody');
+const headerRow = document.getElementById('headerRow'); // Nueva referencia al encabezado
 
 let currentCircle = null;
 let offsetX, offsetY;
@@ -25,7 +29,13 @@ addCircleEvents(mainCircle);
 circles.push({ element: mainCircle, parent: null, generation: 0 });
 
 // Colores de los círculos según su jerarquía
-const colors = ['white', 'red', 'blue', 'green', 'yellow', 'gray', 'orange', 'pink', 'brown']; // Reemplaza 'newColor' con el color deseado
+const colors = [
+    'white', 'red', 'blue', 'green', 'yellow', 
+    'gray', 'orange', 'pink', 'cyan', 'magenta', 
+    'lime', 'teal', 'navy', 'maroon', 'olive', 
+    'fuchsia', 'wheat', 'indigo','tomato','khaki',
+    'coral', 'sienna','salmon', 'plum', 'brown'
+]; // Lista actualizada de colores
 
 function onMouseDown(circle, e) {
     currentCircle = circle; // Establecer el círculo actual
@@ -55,8 +65,7 @@ function onMouseDown(circle, e) {
     document.addEventListener("mouseup", onMouseUp);
 }
 
-function onRightClick(e) {
-    e.preventDefault(); // Evita el menú contextual
+function onLeftClick(e) {
     const rect = currentCircle.getBoundingClientRect();
     formContainer.style.display = 'block';
     formContainer.style.top = rect.top + 'px';
@@ -69,7 +78,7 @@ function onRightClick(e) {
 
 function addCircleEvents(circle) {
     circle.addEventListener("mousedown", (e) => onMouseDown(circle, e));
-    circle.addEventListener("contextmenu", onRightClick);
+    circle.addEventListener("click", onLeftClick);
 }
 
 function drawLines() {
@@ -110,31 +119,36 @@ circleForm.addEventListener("submit", function(e) {
     const circleCount = parseInt(document.getElementById("circleCount").value);
     const smallCircleCount = parseInt(document.getElementById("smallCircleCount").value);
 
+    // Eliminar los pequeños círculos existentes antes de crear nuevos
     removeSmallCircles(currentCircle); 
-
-    // Crear nuevos pequeños círculos dentro del círculo padre
     createSmallCircles(smallCircleCount, currentCircle);
     
     // Crear círculos hijos alineados 50px debajo del círculo padre y centrados
     createChildCircles(circleCount, colors[getGeneration(currentCircle)]);
     formContainer.style.display = 'none'; 
     drawLines();
+    updateColorTable(); // Actualiza la tabla automáticamente después de realizar cambios
 });
 
 // Función para eliminar pequeños círculos existentes
 function removeSmallCircles(parentCircle) {
+    let smallCircleCountRemoved = 0; // Contador de círculos pequeños eliminados
+
     smallCircles.forEach(smallCircleData => {
         if (smallCircleData.parent === parentCircle) {
             smallCircleData.element.remove();
+            smallCircleCountRemoved++;
         }
     });
 
     smallCircles = smallCircles.filter(smallCircleData => smallCircleData.parent !== parentCircle);
+    return smallCircleCountRemoved; // Retorna la cantidad de círculos eliminados
 }
 
 document.getElementById('clearButton').addEventListener("click", function() {
     if (currentCircle) {
         const circleToDelete = currentCircle; 
+        const smallCircleCountRemoved = removeSmallCircles(circleToDelete); 
 
         // Añadir la animación de salida
         circleToDelete.style.animation = 'fadeOut 0.5s forwards'; // Agregar clase de animación de salida
@@ -151,6 +165,7 @@ document.getElementById('clearButton').addEventListener("click", function() {
             formContainer.style.display = 'none';
             drawLines();
             adjustBodyHeight();
+            updateColorTable(smallCircleCountRemoved); // Actualiza la tabla al eliminar un círculo
         }, 500); // Esperar a que termine la animación antes de eliminar el círculo
     }
 });
@@ -223,6 +238,7 @@ function createSmallCircles(count, parentCircle) {
     const generation = getGeneration(parentCircle);
     
     switch (generation) {
+        case 0: smallCircleColor = 'white'; break;
         case 1: smallCircleColor = 'red'; break;
         case 2: smallCircleColor = 'blue'; break;
         case 3: smallCircleColor = 'green'; break;
@@ -230,8 +246,23 @@ function createSmallCircles(count, parentCircle) {
         case 5: smallCircleColor = 'gray'; break;
         case 6: smallCircleColor = 'orange'; break;
         case 7: smallCircleColor = 'pink'; break;
-        case 8: smallCircleColor = 'brown'; break;
-        case 9: smallCircleColor = 'white'; break;
+        case 8: smallCircleColor = 'cyan'; break;
+        case 9: smallCircleColor = 'magenta'; break;
+        case 10: smallCircleColor = 'lime'; break;
+        case 11: smallCircleColor = 'teal'; break;
+        case 12: smallCircleColor = 'navy'; break;
+        case 13: smallCircleColor = 'maroon'; break;
+        case 14: smallCircleColor = 'olive'; break;
+        case 15: smallCircleColor = 'fuchsia'; break;
+        case 16: smallCircleColor = 'wheat'; break;
+        case 17: smallCircleColor = 'indigo'; break;
+        case 18: smallCircleColor = 'tomato'; break;
+        case 19: smallCircleColor = 'khaki'; break;
+        case 20: smallCircleColor = 'coral'; break;
+        case 21: smallCircleColor = 'sienna'; break;
+        case 22: smallCircleColor = 'salmon'; break;
+        case 23: smallCircleColor = 'plum'; break;
+        case 24: smallCircleColor = 'brown'; break;
         default: return;
     }
 
@@ -269,4 +300,52 @@ function adjustBodyHeight() {
 }
 
 // Dibuja líneas al cargar la página
-drawLines();
+drawLines();  
+
+// Añadir el evento para mostrar/ocultar la tabla de colores en la fila de encabezado
+headerRow.addEventListener('click', function() {
+    // Llenar la tabla con los datos actualizados
+    updateColorTable();
+    
+    // Añade o quita la clase de animación 
+    colorTableBody.classList.toggle('fade'); // Activa/desactiva la clase para animación
+    colorTableBody.style.display = colorTableBody.style.display === 'none' ? 'table-row-group' : 'none';
+});
+
+// Actualiza la tabla de colores
+function updateColorTable(smallCircleCountRemoved = 0) {
+    const colorCounts = {};
+    const largeCircleCounts = {};
+    let totalWhiteCircles = 0; // Contador para círculos blancos
+
+    // Inicializa el contador de colores
+    colors.forEach(color => {
+        colorCounts[color] = smallCircles.filter(smallCircleData => smallCircleData.element.classList.contains(color)).length;
+        largeCircleCounts[color] = circles.filter(circleData => circleData.element.classList.contains(color)).length;
+    });
+
+    // Sumar los círculos de primera generación (blancos)
+    totalWhiteCircles = circles.filter(circleData => circleData.generation === 0).length;
+    colorCounts['white'] = totalWhiteCircles; // Agregar a la cuenta de colores
+
+    // Ajusta el contador de pequeños círculos eliminados
+    if (smallCircleCountRemoved > 0) {
+        let totalSmallCircleCount = Object.keys(colorCounts).reduce((total, color) => total + colorCounts[color], 0);
+        colorCounts['smallCircles'] = totalSmallCircleCount - smallCircleCountRemoved;
+    }
+
+    // Genera el HTML para mostrar los datos en la tabla
+    let colorHtml = '';
+    let index = 1; // Inicializa el contador de generación
+    colors.forEach(color => {
+        colorHtml += `<tr>
+                        <td>${index++}</td> <!-- Número de generación -->
+                        <td><span class="color-circle" style="background-color: ${color}; width: 15px; height: 15px;"></span></td>
+                        <td>${colorCounts[color]}</td>
+                        <td>${largeCircleCounts[color]}</td>
+                      </tr>`;
+    });
+    
+    // Muestra el conteo de colores
+    colorTableBody.innerHTML = colorHtml;
+}

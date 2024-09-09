@@ -47,10 +47,30 @@ canvas {
 .circle.yellow { background-color: yellow; }
 .circle.gray { background-color: gray; }
 .circle.orange { background-color: orange; }
-.circle.purple { background-color: violet; }
-.circle.brown { background-color: brown; }
 .circle.pink { background-color: pink; }
-
+.circle.cyan { background-color: cyan; }
+.circle.magenta { background-color: magenta; }
+.circle.lime { background-color: lime; }
+.circle.teal { background-color: teal; }
+.circle.navy { background-color: navy; }
+.circle.maroon { background-color: maroon; }
+.circle.olive { background-color: olive; }
+.circle.fuchsia { background-color: fuchsia; }
+.circle.charcoal { background-color: #36454F; }
+.circle.wheat { background-color: #F5DEB3; }
+.circle.indigo { background-color: indigo; }
+.circle.khaki { background-color: khaki; }
+.circle.tomato { background-color: tomato; }
+.circle.periwinkle { background-color: #CCCCFF; }
+.circle.coral { background-color: coral; }
+.circle.sienna { background-color: sienna; }
+.circle.salmon { background-color: salmon; }
+.circle.plum { background-color: plum; }
+.circle.seafoam { background-color: #2E8B57; }
+.circle.slate { background-color: slateblue; }
+.circle.azure { background-color: azure; }
+.circle.rose { background-color: #FF007F; }
+.circle.circle.brown { background-color: brown; }
 .circle:active { cursor: grabbing; }
 
 .form-container {
@@ -133,4 +153,62 @@ canvas {
     font-size: 16px;
     cursor: pointer;
     color: #3498db;
+}
+
+.color-count {
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    font-size: 14px;
+    color: black;
+}
+
+/* Estilos para la tabla */
+#colorTableContainer {
+    max-height: 300px; /* Altura máxima del contenedor de la tabla */
+    overflow-y: auto; /* Habilita el desplazamiento vertical */
+}
+
+#colorTable {
+    margin: 10px;
+    border-collapse: collapse;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+#colorTable th { 
+    background-color: #3498db; 
+    border: 1px solid white;
+    color: white; 
+    position: sticky; 
+    top: 0; /* Mantiene la fila de encabezado en su lugar */
+    z-index: 10; /* Mantener la fila de encabezado encima del contenido */
+}
+
+#colorTable th, #colorTable td {
+    border: 1px solid #3498db;
+    padding: 8px;
+    text-align: center;
+}
+
+.color-circle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: inline-block; /* Asegura que se adapte al tamaño del contenido */
+}
+
+.fade {
+    animation: fadeInOut 0.5s; /* Animación de aparición y desaparición */
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
